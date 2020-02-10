@@ -1,0 +1,28 @@
+{
+  "name": "btfs-mini",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "uglify-js": "^3.7.7",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "browser": {
+    "xmlhttprequest": false,
+    "./src/lib/XMLHttpRequest.js": "./src/lib/XMLHttpRequest-browser.js",
+    "./lib/lib/XMLHttpRequest.js": "./lib/lib/XMLHttpRequest-browser.js"
+  },
+  "devDependencies": {
+    "uglify-es": "^3.3.9",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
