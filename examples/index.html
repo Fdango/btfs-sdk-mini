@@ -1,0 +1,40 @@
+<html>
+  <body>
+    <h2>btfs-mini</h2>
+    <h3>Browser Example</h3>
+
+
+    <hr />
+
+    <h4>Add String Data</h4>
+    <textarea id="addInputData" placeholder="Hello world!"></textarea>
+
+    <br />
+
+    <button id="addData">Add Data</button>
+
+    <br /><br />
+
+    <div id="addResponse"></div>
+
+    <script type="text/javascript" src="../dist/btfs-sdk-mini.js"></script>
+    <script type="text/javascript">
+      var el = function(id){ return document.querySelector(id); };
+      var btfs = new BTFS({ host: '18.163.127.219', protocol: 'http' });
+
+
+      el('#addData').addEventListener('click', function(){
+        var isJSON = false;
+        var inputData = el('#addInputData').value;
+
+        btfs.add(inputData, (err, result) => {
+          if (err) {
+            el('#addResponse').innerHTML = 'Hmm.. there was an error: ' + String(err);
+          } else {
+            el('#addResponse').innerHTML = result;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
