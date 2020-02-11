@@ -7,7 +7,7 @@ module.exports = {
       path: path.resolve(__dirname, 'dist'),
       library: 'BTFS',
       libraryTarget: 'umd',
-      filename: 'btfs-mini.js'
+      filename: 'btfs-sdk-mini.js'
     },
     target: "web",
     optimization: {
