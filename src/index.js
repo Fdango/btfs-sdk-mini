@@ -72,12 +72,12 @@ BTFS.prototype.sendAsync = function sendAsync(opts, cb) {
     };
 
     try {
-      var pinningURI = self.provider.pinning && opts.uri === '/add' ? '?pin=true' : '';
+      var pinningURI = self.provider.pinning && opts.uri == '/add' ? '?pin=true' : '';
 
       if (options.payload) {
-        request.open('POST', `${self.requestBase}${opts.uri}${pinningURI}`);
+        request.open('POST', `${self.requestBase}${opts.uri}`);
       } else {
-        request.open('GET', `${self.requestBase}${opts.uri}${pinningURI}`);
+        request.open('GET', `${self.requestBase}${opts.uri}`);
       }
 
       if (options.accept) {
@@ -137,37 +137,4 @@ BTFS.prototype.add = function addData(input, callback) {
 BTFS.prototype.addJSON = function addJson(jsonData, callback) {
   var self = this;
   return self.add(JSON.stringify(jsonData), callback);
-};
-
-/**
- * Get an object stat `/object/stat` for an BTFS hash
- * @param {String} `BTFSHash` a single BTFS hash String
- * @param {Function} `callback` a callback, with (error, stats Object)
- * @callback {Object} `stats` returns the stats object for that BTFS hash
- */
-BTFS.prototype.stat = function cat(BTFSHash, callback) {
-  var self = this;
-  return self.sendAsync({ jsonParse: true, uri: `/object/stat/${BTFSHash}` }, callback);
-};
-
-/**
- * Get the data from an BTFS hash
- * @param {String} `BTFSHash` a single BTFS hash String
- * @param {Function} `callback` a callback, with (error, stats Object)
- * @callback {String} `data` returns the output data
- */
-BTFS.prototype.cat = function cat(BTFSHash, callback) {
-  var self = this;
-  return self.sendAsync({ uri: `/cat/${BTFSHash}` }, callback);
-};
-
-/**
- * Get the data from an BTFS hash that is a JSON object
- * @param {String} `BTFSHash` a single BTFS hash String
- * @param {Function} `callback` a callback, with (error, json Object)
- * @callback {Object} `data` returns the output data JSON object
- */
-BTFS.prototype.catJSON = function catJSON(BTFSHash, callback) {
-  var self = this;
-  return self.sendAsync({ uri: `/cat/${BTFSHash}`, jsonParse: true }, callback);
 };

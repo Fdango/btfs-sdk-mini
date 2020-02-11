@@ -3,17 +3,6 @@
     <h2>btfs-mini</h2>
     <h3>Browser Example</h3>
 
-    <hr />
-
-    <h4>Get btfs Hash Data<h4>
-    <input type="text" id="lookupHash" placeholder="QmbhrsdhbvQy3RyNiDdStgF4YRVc4arteS3wL5ES5M6cVd" />
-
-    <button id="lookup">Lookup Block</button>
-    <button id="lookupStats">Get Stats</button>
-
-    <br /><br />
-
-    <div id="lookupResponse"></div>
 
     <hr />
 
@@ -31,32 +20,8 @@
     <script type="text/javascript" src="../dist/btfs-mini.js"></script>
     <script type="text/javascript">
       var el = function(id){ return document.querySelector(id); };
-      var btfs = new BTFS({ host: 'btfs.infura.io', protocol: 'https' });
+      var btfs = new BTFS({ host: '18.163.127.219', protocol: 'http' });
 
-      el('#lookup').addEventListener('click', function(){
-        var isJSON = false;
-        var lookupHash = el('#lookupHash').value;
-
-        btfs.cat(lookupHash, (err, result) => {
-          if (err) {
-            el('#lookupResponse').innerHTML = 'Hmm.. there was an error: ' + String(err);
-          } else {
-            el('#lookupResponse').innerHTML = result;
-          }
-        });
-      });
-
-      el('#lookupStats').addEventListener('click', function(){
-        var lookupHash = el('#lookupHash').value;
-
-        btfs.stat(lookupHash, (err, result) => {
-          if (err) {
-            el('#lookupResponse').innerHTML = 'Hmm.. there was an error: ' + String(err);
-          } else {
-            el('#lookupResponse').innerHTML = JSON.stringify(result, null, 2);
-          }
-        });
-      });
 
       el('#addData').addEventListener('click', function(){
         var isJSON = false;

@@ -172,12 +172,12 @@ BTFS.prototype.sendAsync = function sendAsync(opts, cb) {
     };
 
     try {
-      var pinningURI = self.provider.pinning && opts.uri === '/add' ? '?pin=true' : '';
+      var pinningURI = self.provider.pinning && opts.uri == '/add' ? '?pin=true' : '';
 
       if (options.payload) {
-        request.open('POST', `${self.requestBase}${opts.uri}${pinningURI}`);
+        request.open('POST', `${self.requestBase}${opts.uri}`);
       } else {
-        request.open('GET', `${self.requestBase}${opts.uri}${pinningURI}`);
+        request.open('GET', `${self.requestBase}${opts.uri}`);
       }
 
       if (options.accept) {
